@@ -45,4 +45,12 @@
     
 -}
 
-main = putStrLn "Put your program here!"
+import Data.Char (toLower)
+
+main = do
+    putStrLn ("Type any word and I will tell you if it is in the dictionary: ")
+    inputWord <- getLine
+    let word = map toLower inputWord
+    dictionary <- readFile "/usr/share/dict/american-english"
+    let dict = words dictionary
+    if elem word $ dict then putStrLn ("Yes, "++ show word ++" is in the dictionary.") else putStrLn ("No, "++ show inputWord ++" is not in the dictionary.") 
